@@ -23,13 +23,25 @@ Java Collections Framework Benchmark Tool: https://github.com/kaan-keskin/java-c
 - Purdue University CS251 Slides
 
 ### Hash Tables
-    Hash Table: A hash table is a data structure that implements an associative array abstract data type, a structure that can map keys to values.
+    Hash Table: A hash table is a data structure that implements an associative array abstract data type, 
+    a structure that can map keys to values.
     
 | <img src="./images/hash_tables_intro.png" alt="Algorithm"  width="700" /> |
 |:--:|
 | *This example shows why we need hash tables* |
     
 A hash table (hash map) is a data structure that implements an associative array abstract data type, a structure that can map keys to values. A hash table uses a hash function to compute an index, also called a hash code, into an array of buckets or slots, from which the desired value can be found. A hash table generalizes the idea of an simple array in which we can access an ordinary elements position in O(1) time. If number of keys stored is small compared to total number of keys then it is effective to use an hash table. One idea that hash tables use is to compute the key from the index instead of directly using the key.
+
+### Applications of Hash Tables
+
+- File System
+	- The hashing is used for the linking of the file name to the path of the file. 
+- Password Verification
+	- When you use some web service and enter your credentials to log in, a hash value of your password is computed on the client-side and then sent to the server which then compares that hash value with the hash value of the stored password.
+- Pattern Matching - The pattern matching is used to detect plagiarism.
+- Programming Languages
+- Compilers
+	- For identifying the keywords in the programming languages, the compiler uses the hash table to store these keywords and other identifiers to compile the program.
 
 An array maps integers to values
 + Given i , array[i] returns the value in O(1)
@@ -53,10 +65,6 @@ The conversion function is known as a hash function, h(k) It should be fast/easy
 |:--:|
 | *Array to dictionary conversion* |
 
-Although searching for an element in a hash table can take as long as searching for an element in a
-linked list—O(n) time in the worst case—in practice, hashing performs extremely well. 
-
-    Under reasonable assumptions, the average time to search for an element in a hash table is O(1).
 
 **How to implement hast tables ?**
 
@@ -95,6 +103,12 @@ When the set K of keys stored in a dictionary is much smaller than the universe 
 With direct addressing, an element with key k is stored in slot k. With hashing, this element is stored in slot h(k); that is, we use a hash function h to compute the slot from the key k. Here, h maps the universe U of keys into the slots of a hash table T=[0.. m-1].
 
 *Direct Access Table (timing always good, space terrible) vs. Hash Table (timing good on average, space always good).*
+
+Although searching for an element in a hash table can take as long as searching for an element in a
+linked list—O(n) time in the worst case—in practice, hashing performs extremely well. 
+
+    Under reasonable assumptions, the average time to search for an element in a hash table is O(1).
+
 
 **Hash Function:**
 
@@ -137,7 +151,7 @@ private int hash(Key key) {
 
 The code masks off the sign bit (to turn the 32-bit integer into a 31-bit nonnegative integer) and then computing the remainder when dividing by M, as in modular hashing.
 
-**User-defined hashCode():** Client code expects that hashCode() disperses the keys uniformly among the possible 32-bit result values. That is, for any object x, you can write x.hashCode() and, in principle, expect to get any one of the 2^32 possible 32-bit values with equal likelihood. Java provides hashCode() implementations that aspire to this functionality for many common types (including String, Integer, Double, Date, and URL), but for your own type, you have to try to do it on your own. Program PhoneNumber.java illustrates one way to proceed: make integers from the instance variables and use modular hashing. Program Transaction.java illustrates an even simpler approach: use the hashCode() method for the instance variables to convert each to a 32-bit int value and then do the arithmetic. 
+**User-defined hashCode():**
 
 We have three primary requirements in implementing a good hash function for a given data type:
 - It should be deterministic—equal keys must produce the same hash value.
@@ -425,16 +439,6 @@ The name of the employee is John Doe.
 The position of John Doe is a Software Engineer.
 {}
 ```
-### Applications of Hash Tables
-
-- File System
-	- The hashing is used for the linking of the file name to the path of the file. 
-- Password Verification
-	- When you use some web service and enter your credentials to log in, a hash value of your password is computed on the client-side and then sent to the server which then compares that hash value with the hash value of the stored password.
-- Pattern Matching
-- Programming Languages
-- Compilers
-	- For identifying the keywords in the programming languages, the compiler uses the hash table to store these keywords and other identifiers to compile the program.
 
 # Trees
 
@@ -457,6 +461,17 @@ The position of John Doe is a Software Engineer.
 | <img src="images/recursive.png" width="500"> | <img src="images/TreeFileSystem.png" width="500"> |
 |------------|-------------|
 | Trees are recursive data structures!      | File systems are example of trees. ([image](https://medium.com/basecs/how-to-not-be-stumped-by-trees-5f36208f68a7))       |
+
+
+### Applications of Trees
+- XML Parser uses tree algorithms.
+- Decision-based algorithm is used in machine learning which works upon the algorithm of tree.
+- Databases also uses tree data structures for indexing.
+- Domain Name Server(DNS) also uses tree structures.
+- File explorer/my computer of mobile/any computer
+- BST used in computer Graphics
+- In robotics and planning trees are used to store the possible states of the solution space. Algorithms generally traverses that tree to find the solution.
+
 
 ## Java Tree Implementation
 

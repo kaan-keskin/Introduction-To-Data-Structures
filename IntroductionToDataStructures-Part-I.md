@@ -31,6 +31,56 @@ To put it briefly, data structures are containers used to store data. However, e
 | :--: |
 | *Retrieved from https://www.linkedin.com/pulse/eating-soup-forks-michael-henderson/* |
 
+## Brief Overview for Java Collection Framework
+
+The term "collection" refers to a set of items which are mostly of the same data type, and used for a specific purpose. There are a lot of collections and although they often look similar from the outside, internally, they work in very different ways. Java provides a large amount of pre-made collections.
+
+The Collection in Java is a framework that provides an architecture to store and manipulate the group of objects.
+
+Java Collections can achieve all the operations that you perform on a data such as searching, sorting, insertion, manipulation, and deletion.
+
+Java Collection means a single unit of objects. Java Collection framework provides many interfaces (Set, List, Queue, Deque) and classes (ArrayList, Vector, LinkedList, PriorityQueue, HashSet, LinkedHashSet, TreeSet).
+
+| ![Java Collection Framework](./images/Collection-Framework-hierarchy.png) |
+|:--:|
+| *Retrieved from https://javabydeveloper.com/collection-framework-key-interfaces/* |
+
+For more information you can read official documentation: 
+
+https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Collections.html
+
+Throughout this document we will use below Java Collections Framework data structures as an example:
+
+- ArrayList : In the Dynamic Array section.
+- LinkedList : In the Linked List section.
+- HashTable : In the Hash Table section.
+
+Other data structures in this document will be implemented using Arrays or Linked Lists for educational purposes.
+
+You can also check Java Collections Framework Benchmark Tool for performance comparison between these data structures: 
+
+https://github.com/kaan-keskin/java-collections-benchmark
+
+## Brief Overview for Python Collections Module
+
+The collection Module in Python provides different types of containers. A Container is an object that is used to store different objects and provide a way to access the contained objects and iterate over them. Some of the built-in containers are Tuple, List, Dictionary, etc.
+
+**Content of Collections Module:**
+
+- Counters
+- OrderedDict
+- DefaultDict
+- ChainMap
+- NamedTuple
+- DeQue
+- UserDict
+- UserList
+- UserString
+
+For more information you can read official documentation: 
+
+https://docs.python.org/3/library/collections.html
+
 ## Basic Data Structures: Arrays and Linked Lists
 
 ### Array Data Structure
@@ -77,7 +127,7 @@ The set of valid index tuples and the addresses of the elements (and hence the e
 
 **RemoveBeginning()**: Where it's get to be expensive, if we want to remove the first element. So we remove the first element, then we need to move all elements to the left (or down). That's an O(n) operation.
 
-**AddBeginning(value)**: I we want to insert at the beginning, we need to move every element to the right (or up), then insert the element at the beginning.
+**AddBeginning(value)**: If we want to insert at the beginning, we need to move every element to the right (or up), then insert the element at the beginning.
 
 Arrays are great if you want to add or remove element at the end. But it's expensive if you want to add or remove in the middle or at the beginning.
 
@@ -178,7 +228,7 @@ The NumPy (Numerical Python) library first appeared in 2006 and is the preferred
 
 **It offers a high-performance, richly functional n-dimensional array type called ndarray**, which from this point forward we’ll refer to by its synonym, array.
 
-**Operations on array s are up to two orders of magnitude faster than those on lists.**
+**Operations on arrays are up to two orders of magnitude faster than those on lists.**
 
 In a big-data world in which applications may do massive amounts of processing on vast amounts of array-based data, this performance advantage can be critical.
 
@@ -198,6 +248,44 @@ A data type object (an instance of numpy.dtype class) describes how the bytes in
 
 1) Type of the data (integer, float, Python object, etc.)
 
+- **bool_**: Boolean (True or False) stored as a byte.
+
+- **int_**: Default integer type (same as C long; normally either int64 or int32).
+
+- **intc**: Identical to C int (normally int32 or int64).
+
+- **intp**: Integer used for indexing (same as C ssize_t; normally either int32 or int64).
+
+- **int8**: Byte (-128 to 127).
+
+- **int16**: Integer (-32768 to 32767).
+
+- **int32**: Integer (-2147483648 to 2147483647).
+
+- **int64**: Integer (-9223372036854775808 to 9223372036854775807).
+
+- **uint8**: Unsigned integer (0 to 255).
+
+- **uint16**: Unsigned integer (0 to 65535).
+
+- **uint32**: Unsigned integer (0 to 4294967295).
+
+- **uint64**: Unsigned integer (0 to 18446744073709551615).
+
+- **float_**: Shorthand for float64.
+
+- **float16**: Half precision float: sign bit, 5 bits exponent, 10 bits mantissa.
+
+- **float32**: Single precision float: sign bit, 8 bits exponent, 23 bits mantissa.
+
+- **float64**: Double precision float: sign bit, 11 bits exponent, 52 bits mantissa.
+
+- **complex_**: Shorthand for complex128.
+
+- **complex64**: Complex number, represented by two 32-bit floats (real and imaginary components).
+
+- **complex128**: Complex number, represented by two 64-bit floats (real and imaginary components).
+
 2) Size of the data (how many bytes is in e.g. the integer)
 
 3) Byte order of the data (little-endian or big-endian)
@@ -205,9 +293,9 @@ A data type object (an instance of numpy.dtype class) describes how the bytes in
 4) If the data type is structured data type, an aggregate of other data types, (e.g., describing an array item consisting of an integer and a float),
 
     - what are the names of the “fields” of the structure, by which they can be accessed,
-
+    
     - what is the data-type of each field, and
-
+    
     - which part of the memory block each field takes.
 
 5) If the data type is a sub-array, what is its shape and data type.
@@ -254,6 +342,26 @@ Approach: When we enter an element in array but array is full then you create a 
 | Beginning | O(n) | O(n) | O(1) | O(1) |
 | End | **O(1) Amortized** | **O(1) Amortized** | O(1) | O(1) |
 | Middle | O(n) | O(n) | O(1) | O(1) |
+
+#### Amortized Analysis
+
+In computer science, amortized analysis is a method for analyzing a given algorithm's complexity, or how much of a resource, especially time or memory, it takes to execute. 
+
+**The motivation for amortized analysis is that looking at the worst-case run time per operation, rather than per algorithm, can be too pessimistic.**
+
+**While certain operations for a given algorithm may have a significant cost in resources, other operations may not be as costly. The amortized analysis considers both the costly and less costly operations together over the whole series of operations of the algorithm. This may include accounting for different types of input, length of the input, and other factors that affect its performance.**
+
+Amortized analysis requires knowledge of which series of operations are possible. This is most commonly the case with data structures, which have state that persists between operations. 
+
+**The basic idea is that a worst-case operation can alter the state in such a way that the worst case cannot occur again for a long time, thus "amortizing" its cost.**
+
+There are generally three methods for performing amortized analysis: the aggregate method, the accounting method, and the potential method. All of these give correct answers; the choice of which to use depends on which is most convenient for a particular situation.
+
+- **Aggregate Method**: Aggregate analysis determines the upper bound T(n) on the total cost of a sequence of n operations, then calculates the amortized cost to be T(n) / n.
+    
+- **Banker's Method**: The accounting method is a form of aggregate analysis which assigns to each operation an amortized cost which may differ from its actual cost. Early operations have an amortized cost higher than their actual cost, which accumulates a saved "credit" that pays for later operations having an amortized cost lower than their actual cost. Because the credit begins at zero, the actual cost of a sequence of operations equals the amortized cost minus the accumulated credit. Because the credit is required to be non-negative, the amortized cost is an upper bound on the actual cost. Usually, many short-running operations accumulate such credit in small increments, while rare long-running operations decrease it drastically.
+    
+- **Physicist's Method**: The potential method is a form of the accounting method where the saved credit is computed as a function (the "potential") of the state of the data structure. The amortized cost is the immediate cost plus the change in potential.
 
 #### Dynamic Array in Java Programming Language
 
@@ -714,7 +822,7 @@ Doubly-Linked List Node Contains:
 | Erase(key) | O(n) | O(n) |
 | Empty() | O(1) | O(1) |
 | AddBefore(node,key) | **O(1)** | **O(1)** |
-| AddAfter(node,key) | O(n) | O(n) |
+| AddAfter(node,key) | **O(1)** | **O(1)** |
 
 #### Implementing a Singly-Linked List in Java Programming Language
 
@@ -1151,6 +1259,10 @@ class LinkedList:
             self.append(item)
 ```
 
+You can find detailed implementation here: 
+
+https://www.devmaking.com/learn/data-structures/doubly-linked-list/
+
 ##### Running Times for Implemented Singly-Linked List in Python Programming Language
 
 | Operation | Complexity | Usage | Method |
@@ -1427,4 +1539,3 @@ Since the entries array is populated sequentially, it naturally ensures the orde
 The initial reason for this change was saving space by sharing hash tables of multiple dicts with the same set of keys (which in Python means instances of the same class, for example).
 
 **But not sets though! Sets are still unordered!**
-
