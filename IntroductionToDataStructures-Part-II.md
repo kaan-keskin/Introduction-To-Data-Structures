@@ -404,10 +404,15 @@ The output is:
 2 deli
 ```
  #### Hash Tables in Python Programming Language
-Python comes with a built-in data type called **Dictionary**. 
-A dictionary is an example of a hash table. 
+Python dictionaries are implemented as **hash tables**.
 - It stores values using a pair of keys and values. 
-- The hash values are automatically generated, and any collisions are resolved in the background. 
+- The hash values are automatically generated, and any collisions are resolved in the background.
+- Python uses c implementation for hash tables and the implementation can be found at: [code](https://hg.python.org/cpython/file/52f68c95e025/Objects/dictobject.c#l296) 
+- Python dict uses open addressing to resolve hash collisions (explained below).  (see dictobject.c:296-297 from the code).
+- When a new dict is initialized it starts with 8 slots. (see dictobject.h:49 from the [code](https://hg.python.org/cpython/file/52f68c95e025/Include/dictobject.h#l64))
+- CPython uses random probing. In random probing, the next slot is picked in a pseudo random order. The entry is added to the first empty slot.(see dictobject.c:33-126 for the algorithm for probing).
+- The dict will be resized if it is two-thirds full. This avoids slowing down lookups. (see dictobject.h:64-65)
+- When adding entries to the table, we start with some slot, i, that is based on the hash of the key. CPython initially uses i = hash(key) & mask (where mask = PyDictMINSIZE - 1). Te initial slot, i, that is checked depends on the hash of the key.
 
 The following example shows the basic hash table operations in python3:
 ```Python
