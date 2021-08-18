@@ -126,7 +126,7 @@ If we know which keys will occur in advance we can write perfect hash functions,
 
 **Floating-point numbers:** If the keys are real numbers between 0 and 1, we might just multiply by M and round off to the nearest integer to get an index between 0 and M-1. Although it is intuitive, this approach is defective because it gives more weight to the most significant bits of the keys; the least significant bits play no role. One way to address this situation is to use modular hashing on the binary representation of the key (this is what Java does).
 
-**Strings:** Modular hashing works for long keys such as strings, too: we simply treat them as huge integers. For example, the code below computes a modular hash function for a String s, where R is a small prime integer (Java uses 31).
+**Strings:** Modular hashing works for long keys such as strings, too: we simply treat them as huge integers. For example, the code below computes a modular hash function for a String s, where R is a small prime integer (Java uses 31 - Why 31??? It's prime, so that when the user mods out by another number, they have no common factors (unless it's a multiple of 31). 31 is also a Mersenne prime (like 127 or 8191) which is a prime number that is one less than a power of 2. This means that the mod can be done with one shift and one subtract if the machine's multiply instruction is slow.).
 
 ```Java
 int hash = 0;
@@ -140,6 +140,8 @@ for (int i = 0; i < s.length(); i++)
 int hash = (((area * R + exch) % M) * R + ext) % M; 
 ```
 **Java conventions:** Java helps us address the basic problem that every type of data needs a hash function by requiring that every data type must implement a method called hashCode() (which returns a 32-bit integer). The implementation of hashCode() for an object must be consistent with equals. That is, if a.equals(b) is true, then a.hashCode() must have the same numerical value as b.hashCode(). If the hashCode() values are the same, the objects may or may not be equal, and we must use equals() to decide which condition holds.
+
+**Python conventions:** Similarly in python one can implement \_\_hash\_\_() function for objects. And \_\_eq\_\_() for checking equality.
 
 Converting a hashCode() to an array index. Since our goal is an array index, not a 32-bit integer, we combine hashCode() with modular hashing in our implementations to produce integers between 0 and M-1 as follows:
 
@@ -184,7 +186,7 @@ Pigeon Hole Principle says given n items to be slotted into m holes and **n > m*
 - Collisions occur when two keys, k<sub>1</sub> and k<sub>2</sub>, are not equal, but h(k<sub>1</sub>) = h(k<sub>2</sub>).
 - Collisions are inevitable if the number of entries, n , is greater than table size, m by pigeonhole principle
 - Methods
-    - Closed Addressing (e.g. buckets or chaining
+    - Closed Addressing (e.g. buckets or chaining)
     - Open addressing (aka probing)
        - Linear Probing
        - Quadratic Probing
@@ -966,12 +968,13 @@ Usage:
 private BinaryTree createBinaryTree() {
     BinaryTree bt = new BinaryTree();
 
-    bt.add(8);
-    bt.add(3);
-    bt.add(2);
-    bt.add(6);
-    bt.add(7);
+    
     bt.add(4);
+    bt.add(2);
+    bt.add(7);
+    bt.add(8);
+    bt.add(6);
+    bt.add(3);
     bt.add(1);
 
     return bt;
@@ -1007,12 +1010,12 @@ def insert(root, key):
 Usage:
 
 ```Python 
-r = Node(8)
-r = insert(r, 3)
+r = Node(4)
+r = insert(r, 7)
 r = insert(r, 2)
 r = insert(r, 6)
-r = insert(r, 7)
-r = insert(r, 4)
+r = insert(r, 3)
+r = insert(r, 8)
 r = insert(r, 1)
  ```
 
